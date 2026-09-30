@@ -4,19 +4,18 @@ A Next.js app for Vercel, backed by Turso (SQLite).
 
 ## Deploy
 
-Follow START_HERE.md in the download. Upload this folder's contents to your private GitHub repository. package.json belongs at the repository root.
+Upload this folder's contents to your GitHub repository. package.json belongs at the repository root.
 
 In Vercel, import the repository as Next.js. Connect a Turso database through Storage / Marketplace. The integration supplies TURSO_DATABASE_URL and TURSO_AUTH_TOKEN.
 
-Add two additional, server-only environment variables:
-- LAB_ACCESS_CODE: a private shared lab code, at least 12 characters. Give this to interns.
+Add this additional, server-only environment variable:
 - TEACHER_SETUP_KEY: a separate private setup key, at least 20 characters. Keep this for yourself.
 
 Do not use NEXT_PUBLIC_ prefixes for these variables. Use Production values for the live portal; connect a different database before enabling preview testing with real data.
 
-Run the SQL from the private migration folder on the NEW database to copy the saved roster, task, hours, and hashed PIN. Keep that file out of GitHub. If you want an empty installation instead, run database/schema.sql and use TEACHER_SETUP_KEY to create a teacher PIN.
+Run the SQL from the private migration folder on the NEW database to copy the saved roster, task, hours, and records. Use a fresh teacher PIN when migrating. Keep that file out of GitHub. If you want an empty installation instead, run database/schema.sql and use TEACHER_SETUP_KEY to create a teacher PIN.
 
-Redeploy after connecting the database and setting environment variables. Open the deployed URL, enter LAB_ACCESS_CODE, and open Teacher desk with your existing PIN if you imported the saved data.
+Redeploy after connecting the database and setting environment variables. Open the deployed URL, choose your name to use the intern portal. Open Teacher desk to set up or enter your teacher PIN.
 
 ## Local development
 
@@ -37,4 +36,4 @@ Print my tasks opens the browser print dialog with an 80 mm receipt layout. Sele
 
 ## Access
 
-LAB_ACCESS_CODE restricts the roster and other records to people who know the lab code. Teacher controls also require the teacher PIN. Interns select their names, so this is a shared lab/kiosk workflow rather than verified individual accounts. Sessions expire after 12 hours for lab access and 8 hours for teacher access.
+Interns open the portal and select their name without an access code. Teacher controls require the teacher PIN. Intern name selection uses the shared lab workflow. Teacher sessions expire after 8 hours.
